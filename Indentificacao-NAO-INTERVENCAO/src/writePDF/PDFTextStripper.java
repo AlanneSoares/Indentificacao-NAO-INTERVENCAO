@@ -5,6 +5,7 @@ import lerpdf.PDDocument;
 public class PDFTextStripper {
 
     private int endPage;
+    private int startPage;
 
     public void setStartPage(int startPage) {
         this.startPage = startPage;
@@ -14,7 +15,5 @@ public class PDFTextStripper {
         this.endPage = endPage;
     }
 
-    public String getText(PDDocument pdDoc) {
-
-    }
+    public void getText(PDDocument pdDoc) { }
 }

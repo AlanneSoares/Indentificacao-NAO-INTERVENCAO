@@ -19,9 +19,7 @@ public class PDFManager {
     private String filePath;
     private File file;
 
-    public PDFManager() {
-
-    }
+    public PDFManager() { }
 
     public String ToText() throws IOException {
 
@@ -40,12 +38,11 @@ public class PDFManager {
         pdfStripper.setStartPage(1);
         pdfStripper.setEndPage(10);
 
-        Text = pdfStripper.getText(pdDoc);
+        pdfStripper.getText(pdDoc);
         return Text;
     }
 
     public void setFilePath(String filePath) {
         this.filePath = filePath;
     }
-
 }
