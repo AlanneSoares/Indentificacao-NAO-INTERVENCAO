@@ -30,7 +30,7 @@ public class ConverterPdf2Txt {
             } finally {
                 if (pdfDocument != null) {
                     try {
-                        pdfDocument.close();
+                        fileInputStream.close();
                     } catch (IOException e) {}
                 }
             }
@@ -39,18 +39,10 @@ public class ConverterPdf2Txt {
         }
     }
 
-    /**
-     * Log Info.
-     * @param log
-     */
     private static void info(String log) {
         System.out.println("INFO: " + log);
     }
 
-    /**
-     * Log Error.
-     * @param log
-     */
     private static void error(String log) {
         System.out.println("ERROR: " + log);
     }
