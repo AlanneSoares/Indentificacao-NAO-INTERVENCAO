@@ -1,3 +1,22 @@
+/*
+
+    "A", "ANTE", "APOS", "ATE", "COM", "CONTRA",
+                "DE", "DESDE", "EM", "ENTRE", "PARA", "PER",
+                "PERANTE", "POR", "SEM", "SOB", "SOBRE", "TRAS",
+                "AFORA", "COMO", "CONFORME", "CONSOANTE", "DURANTE",
+                "EXCETO", "SALVO", "SEGUNDO", "VISTO", "O", "OS", "AO",
+                "AOS", "AONDE", "ONDE", "AS", "DA", "NO", "NA", "NOS",
+                "NAS", "NUMA", "PELO", "DESSA", "DESSAS", "DESSE",
+                "DESSES", "NAQUELA", "NAQUELAS", "NAQUELE", "NAQUELES",
+                "DE MODO QUE", "ABAIXO DE", "ACIMA DE", "ALÉM DE", "AO INVÉS",
+                "ANTES DE", "AO LADO DE", "APESAR DE", "ATRÁS DE", "ATRÁS DE",
+                "DE ACORDO COM", "DENTRO DE", "DEPOIS DE", "EMBAIXO DE", "EM FRENTE DE",
+                "EM FRENTE A", "EM VEZ DE", "JUNTO DE", "PERTO DE", "POR ENTRE"
+
+ */
+
+
+
 package lerpdf;
 
 import java.io.*;
@@ -40,7 +59,8 @@ public class TrataPDF {
 
             String conteudoSemEspacoMaiuscula = conteudoPDFSemAcentuacao.replaceAll("\\s+", " ").toUpperCase();
 
-            List<String> palavraSemPreposicao = removePreposicao(Arrays.asList(conteudoSemEspacoMaiuscula.split(" ")));
+            List<String> removePreposicao = removePreposicao(Arrays.asList(conteudoSemEspacoMaiuscula.split(" ")));
+            List<String> removePreposicaoAcidental = removePreposicaoAcidental(Arrays.asList(conteudoSemEspacoMaiuscula.split(" ")));
 
 
             return conteudoPDFSemAcentuacao.toUpperCase();
@@ -51,33 +71,47 @@ public class TrataPDF {
         }
     }
 
-
-
     public static List<String> removePreposicao(List<String> palavras) {
 
-        String[] EXECAOPALAVRA = {
+        String[] PREPOSICOES = {
                 "A", "ANTE", "APOS", "ATE", "COM", "CONTRA",
                 "DE", "DESDE", "EM", "ENTRE", "PARA", "PER",
-                "PERANTE", "POR", "SEM", "SOB", "SOBRE", "TRAS",
-                "AFORA", "COMO", "CONFORME", "CONSOANTE", "DURANTE",
-                "EXCETO", "SALVO", "SEGUNDO", "VISTO", "O", "OS", "AO",
-                "AOS", "AONDE", "ONDE", "AS", "DA", "NO", "NA", "NOS",
-                "NAS", "NUMA", "PELO", "DESSA", "DESSAS", "DESSE",
-                "DESSES", "NAQUELA", "NAQUELAS", "NAQUELE", "NAQUELES",
-                "DE MODO QUE", "ABAIXO DE", "ACIMA DE", "ALÉM DE", "AO INVÉS",
-                "ANTES DE", "AO LADO DE", "APESAR DE", "ATRÁS DE", "ATRÁS DE",
-                "DE ACORDO COM", "DENTRO DE", "DEPOIS DE", "EMBAIXO DE", "EM FRENTE DE",
-                "EM FRENTE A", "EM VEZ DE", "JUNTO DE", "PERTO DE", "POR ENTRE"
-
+                "PERANTE", "POR", "SEM", "SOB", "SOBRE", "TRAS"
         };
 
         List<String> palavraSemPreposicao = new ArrayList<>(palavras);
 
         for (String palavra : palavras) {
 
-            for (String preposicao : EXECAOPALAVRA) {
+            for (String preposicao : PREPOSICOES) {
 
                 if (palavra.equals(preposicao)) {
+                    palavraSemPreposicao.remove(preposicao);
+
+                }
+            }
+        }
+
+        return palavraSemPreposicao;
+
+    }
+
+
+    public static List<String> removePreposicaoAcidental(List<String> preposicaoAcidental) {
+
+        String[] PREPOSICAOACIDENTAL = {
+                "AFORA", "COMO", "CONFORME",
+                "CONSOANTE", "DURANTE", "EXCETO",
+                "SALVO", "SEGUNDO", "VISTO"
+        };
+
+        List<String> palavraSemPreposicao = new ArrayList<>(preposicaoAcidental);
+
+        for (String palavra : preposicaoAcidental) {
+
+            for (String preposicao : PREPOSICAOACIDENTAL) {
+
+                if (palavra.equals(preposicao)){
                     palavraSemPreposicao.remove(preposicao);
                 }
             }
