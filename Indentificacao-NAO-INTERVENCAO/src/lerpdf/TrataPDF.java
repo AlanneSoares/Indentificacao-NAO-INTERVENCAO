@@ -12,12 +12,13 @@ import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.util.PDFTextStripper;
 
 public class TrataPDF {
+
     public static void main(String args[]) {
 
         System.out.println(pdf());
     }
 
-    public static String pdf(){
+    public static String pdf() {
 
         PDFParser parser = null;
         PDDocument pdDoc = null;
@@ -25,7 +26,7 @@ public class TrataPDF {
         PDFTextStripper pdfStripper;
 
         String interiorPdf;
-        String fileName = "C:\\Users\\alanne.soares\\Documents\\teste.pdf";
+        String fileName = "c:/users/alanne.soares/documents/teste-1.pdf";
         File file = new File(fileName);
         try {
             parser = new PDFParser(new FileInputStream(file));
@@ -39,29 +40,64 @@ public class TrataPDF {
 
             String conteudoSemEspacoMaiuscula = conteudoPDFSemAcentuacao.replaceAll("\\s+", " ").toUpperCase();
 
-            List<String> palavrasSemPreposicao = removePreposicao(Arrays.asList(conteudoSemEspacoMaiuscula.split(" ")));
+            List<String> palavraSemPreposicao = removePreposicao(Arrays.asList(conteudoSemEspacoMaiuscula.split(" ")));
 
-            return conteudoPDFSemAcentuacao;
+
+            return conteudoPDFSemAcentuacao.toUpperCase();
+
         } catch (Exception e) {
             e.printStackTrace();
             return null;
-            }
         }
+    }
 
     public static List<String> removePreposicao(List<String> palavras) {
-        String[] PREPOSICOES = {"", "AGRAVO", "A", "ANTE", "APOS", "ATE", "COM", "CONTRA", "DE", "DESDE", "EM", "ENTRE", "PARA", "PER", "PERANTE", "POR", "SEM", "SOB", "SOBRE", "TRAS"};
 
-        List<String> palavrasSemPreposicoes = new ArrayList<>();
+        String[] PREPOSICOES = {
+                "A", "ANTE", "APOS", "ATE", "COM", "CONTRA",
+                "DE", "DESDE", "EM", "ENTRE", "PARA", "PER",
+                "PERANTE", "POR", "SEM", "SOB", "SOBRE", "TRAS"
+            };
+
+        List<String> palavraSemPreposicao = new ArrayList<>(palavras);
+
         for (String palavra : palavras) {
+
             for (String preposicao : PREPOSICOES) {
-                if (palavra.equals(preposicao)){
-                    palavrasSemPreposicoes.add(palavra);
-                    break;
+
+                if (palavra.equals(preposicao)) {
+                    palavraSemPreposicao.remove(preposicao);
+
                 }
             }
         }
-        return palavrasSemPreposicoes;
+
+        return palavraSemPreposicao;
+
+    }
+
+
+    public static List<String> removePreposicaoAcidental(List<String> preposicaoAcidental) {
+
+        String[] PREPOSICAOACIDENTAL = {
+                "AFORA", "COMO", "CONFORME",
+                "CONSOANTE", "DURANTE", "EXCETO",
+                "SALVO", "SEGUNDO", "VISTO"
+            };
+
+        List<String> palavraSemPreposicao = new ArrayList<>(preposicaoAcidental);
+
+        for (String palavra : preposicaoAcidental) {
+
+            for (String preposicao : PREPOSICAOACIDENTAL) {
+
+                if (palavra.equals(preposicao)){
+                    palavraSemPreposicao.remove(preposicao);
+                }
+            }
+        }
+
+        return palavraSemPreposicao;
+
     }
 }
-
-    //String[] strings = (String[]) lista.toArray (new String[lista.size()]);
