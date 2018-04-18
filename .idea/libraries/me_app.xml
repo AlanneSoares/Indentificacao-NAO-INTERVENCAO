@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="me-app">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/Downloads/me-app.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

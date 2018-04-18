@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="aperture_extractors">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/Downloads/aperture_extractors.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
