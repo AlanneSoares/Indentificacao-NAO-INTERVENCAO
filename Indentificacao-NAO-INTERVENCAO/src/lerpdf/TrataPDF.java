@@ -3,18 +3,13 @@ package lerpdf;
 import java.io.*;
 import java.text.Normalizer;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.apache.pdfbox.cos.COSDocument;
 import org.apache.pdfbox.pdfparser.PDFParser;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.util.PDFTextStripper;
-import org.w3c.dom.Document;
-import org.xml.sax.SAXException;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 
 public class TrataPDF {
     public static void main(String args[]) {
@@ -42,25 +37,31 @@ public class TrataPDF {
 
             String conteudoPDFSemAcentuacao = Normalizer.normalize(interiorPdf, Normalizer.Form.NFD).replaceAll("\\p{InCombiningDiacriticalMarks}+", "");
 
-            String conteudoSemEspaco = conteudoPDFSemAcentuacao.replaceAll("\\s+", " ");
+            String conteudoSemEspacoMaiuscula = conteudoPDFSemAcentuacao.replaceAll("\\s+", " ").toUpperCase();
 
-            String[] palavras = conteudoSemEspaco.split(" ");
+            List<String> palavrasSemPreposicao = removePreposicao(Arrays.asList(conteudoSemEspacoMaiuscula.split(" ")));
 
-            return conteudoPDFSemAcentuacao.toUpperCase();
+            return conteudoPDFSemAcentuacao;
         } catch (Exception e) {
             e.printStackTrace();
             return null;
             }
         }
 
+    public static List<String> removePreposicao(List<String> palavras) {
+        String[] PREPOSICOES = {"", "AGRAVO", "A", "ANTE", "APOS", "ATE", "COM", "CONTRA", "DE", "DESDE", "EM", "ENTRE", "PARA", "PER", "PERANTE", "POR", "SEM", "SOB", "SOBRE", "TRAS"};
 
-        public String[] removePreposicao() {
-            List lista = new ArrayList();
-            String[] preposicao;
-
-            String[] preposicao = new String () ["A", "ANTE", "APOS", "ATE", "COM", "CONTRA", "DE", "DESDE", "EM", "ENTRE", "PARA", "PER", "PERANTE", "POR", "SEM", "SOB", "SOBRE", "TRAS"))];
-
+        List<String> palavrasSemPreposicoes = new ArrayList<>();
+        for (String palavra : palavras) {
+            for (String preposicao : PREPOSICOES) {
+                if (palavra.equals(preposicao)){
+                    palavrasSemPreposicoes.add(palavra);
+                    break;
+                }
+            }
         }
+        return palavrasSemPreposicoes;
     }
+}
 
     //String[] strings = (String[]) lista.toArray (new String[lista.size()]);
