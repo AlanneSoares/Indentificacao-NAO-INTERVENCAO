@@ -2,7 +2,19 @@ package pdf;
 
 public class Palavras {
 
-  public static String[] PALAVRASINUTEIS = {
+  public static void palavras() {
+
+    int[] array = new int[0];
+
+    for (int i = 0; i <= array.length; i++) {
+      System.out.println(array);
+
+    }
+  }
+}
+
+
+  /*String[] PALAVRASINUTEIS = {
           "A", "AS", "AO", "AOS", "O", "OS", "ANTE", "APOS", "ATE", "COM", "CONTRA",
           "DE", "DA", "DAS", "DOS", "NO", "NA", "NAS", "NOS", "DESDE", "EM", "ENTRE",
           "PARA", "PER", "PERANTE", "POR", "SEM", "SOB", "SOBRE", "TRAS", "AFORA",
@@ -13,4 +25,4 @@ public class Palavras {
           "ACORDO", "DENTRO", "DEPOIS", "EMBAIXO", "EM", "FRENTE", "VEZ", "JUNTO",
           "PERTO", "ENTRE", "PERTO", "DO"
   };
-}
+  */

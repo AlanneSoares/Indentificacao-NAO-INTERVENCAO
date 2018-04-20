@@ -7,15 +7,19 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="poi-378471" level="project" />
+    <orderEntry type="library" name="pdfbox-1.6.0" level="project" />
+    <orderEntry type="library" name="pdfbox-1.6.0.jar" level="project" />
+    <orderEntry type="library" name="jtidy-4aug2000r7-dev" level="project" />
+    <orderEntry type="library" name="junit-3.8.1" level="project" />
+    <orderEntry type="library" name="fontbox-1.6.0-for-pdfbox" level="project" />
     <orderEntry type="library" name="pdfbox-0.8.0-incubating" level="project" />
-    <orderEntry type="library" name="me-applet" level="project" />
-    <orderEntry type="library" name="me-app" level="project" />
-    <orderEntry type="library" name="icu4j-4_2_1" level="project" />
-    <orderEntry type="library" name="htmlparser-1.6" level="project" />
-    <orderEntry type="library" name="fontbox-0.8.0-incubating" level="project" />
-    <orderEntry type="library" name="commons-logging-1.1.1" level="project" />
     <orderEntry type="library" name="aperture_extractors" level="project" />
+    <orderEntry type="library" name="commons-logging-1.1.1" level="project" />
+    <orderEntry type="library" name="htmlparser-1.6" level="project" />
+    <orderEntry type="library" name="icu4j-4_2_1" level="project" />
+    <orderEntry type="library" name="me-app" level="project" />
+    <orderEntry type="library" name="me-applet" level="project" />
+    <orderEntry type="library" name="poi-378471" level="project" />
   </component>
   <component name="POM File Configuration" pomFile="" />
 </module>
