@@ -3,7 +3,8 @@ package pdf;
 import java.io.*;
 import java.text.Normalizer;
 import java.util.Arrays;
-import java.util.List;
+import java.util.Collections;
+import java.util.Scanner;
 
 import org.apache.pdfbox.cos.COSDocument;
 import org.apache.pdfbox.pdfparser.PDFParser;
@@ -19,9 +20,11 @@ public class TrataPDF {
         COSDocument cosDoc;
         PDFTextStripper pdfStripper;
 
-        String textoPdf;
+        String textoPdf = null;
         String fileName = "c:/users/alanne.soares/documents/teste.pdf";
         File file = new File(fileName);
+        int qtde = 0;
+
 
         try {
 
@@ -35,15 +38,24 @@ public class TrataPDF {
         } catch (Exception e) {
             e.printStackTrace();
 
-            return null;
+            //return null;
         }
 
-        String conteudoPDFSemAcentuacao = Normalizer.normalize(textoPdf, Normalizer.Form.NFD).replaceAll("\\p{InCombiningDiacriticalMarks}+", "");
-        String conteudoSemEspacoMaiuscula = conteudoPDFSemAcentuacao.replaceAll("\\s+", " ").toUpperCase();
 
-        List<String> palavras = ChamaLista.removePalavrasInuteis(Arrays.asList(conteudoSemEspacoMaiuscula.split(" ,")));
+        String conteudoPDFSemAcentuacao = Normalizer.normalize(textoPdf, Normalizer.Form.NFD).replaceAll("\\p{InCombiningDiacriticalMarks}+", "").toUpperCase();
+        //String conteudoSemEspacoMaiuscula = conteudoPDFSemAcentuacao.replaceAll("\\s+", " ").toUpperCase();
 
-        return palavras.toString().replaceAll("", "").toUpperCase();
+        //ChamaLista.removePalavrasInuteis(Collections.singletonList(Arrays.asList(conteudoSemEspacoMaiuscula.split(" ,")).toString().replaceAll("", "").toUpperCase()));
+
+
+        //return conteudoSemEspacoMaiuscula;
+        return conteudoPDFSemAcentuacao;
+
+    }
+}
+
+
+
 
         //conteudoSemEspacoMaiuscula =
         //if (conteudoPDFSemAcentuacao <= 1) {
@@ -53,8 +65,6 @@ public class TrataPDF {
         int letras = letra + letra;
         System.out.println(letras); */
 
-    }
-}
 
     /*private static String removePalavrasInuteis(String texto) {
         String textoLimpo = null;
@@ -65,4 +75,5 @@ public class TrataPDF {
             }
 
         return textoLimpo;
+
     }*/
