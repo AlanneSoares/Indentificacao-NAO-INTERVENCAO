@@ -1,6 +1,9 @@
 package pdf;
 
 import java.io.*;
+import java.text.Normalizer;
+import java.util.Arrays;
+import java.util.List;
 
 import org.apache.pdfbox.cos.COSDocument;
 import org.apache.pdfbox.pdfparser.PDFParser;
@@ -9,17 +12,16 @@ import org.apache.pdfbox.util.PDFTextStripper;
 
 public class TrataPDF {
 
-    public static void obterTexto() {
+    public static String obterTexto() {
 
         PDFParser parser;
         PDDocument pdDoc;
         COSDocument cosDoc;
         PDFTextStripper pdfStripper;
 
-        String textoPdf = null;
+        String textoPdf;
         String fileName = "c:/users/alanne.soares/documents/teste.pdf";
         File file = new File(fileName);
-
 
         try {
 
@@ -30,48 +32,29 @@ public class TrataPDF {
             pdDoc = new PDDocument(cosDoc);
             textoPdf = pdfStripper.getText(pdDoc);
 
-            // String conteudoPDFSemAcentuacao = Normalizer.normalize(textoPdf, Normalizer.Form.NFD).replaceAll("\\p{InCombiningDiacriticalMarks}+", "");
-            //String conteudoSemEspacoMaiuscula = conteudoPDFSemAcentuacao.replaceAll("\\s+", " ").toUpperCase();
+        } catch (Exception e) {
+            e.printStackTrace();
 
-
-            //int cnj = rs.getString("cnj");
-            int dois = 2;
-
-            // para palavras que contém 2 caracteres remova e também remova o espaço
-
-            while (textoPdf.contains() == 2){
-
-                // com traços e pontos
-                //cnj = rs.getString("cnj"); //.replaceAll("[^0-9]", "");  //sem traços e pontos
-
-                int array[] = new int[1];
-
-                for (int i = 0; i <= array.length; i++) {
-
-                    if (cnj.length() == cnj22) { // 22 dígitos acrescenta 3 dígitos e imprime
-                    }
-                    int words = 2;
-
-                    for (int i = 0; i <= textoPdf.length(); i++) {
-                        System.out.println(textoPdf.toUpperCase().replace("", ""));
-
-                    }
-                }
-            }
+            return null;
         }
+
+        String conteudoPDFSemAcentuacao = Normalizer.normalize(textoPdf, Normalizer.Form.NFD).replaceAll("\\p{InCombiningDiacriticalMarks}+", "");
+        String conteudoSemEspacoMaiuscula = conteudoPDFSemAcentuacao.replaceAll("\\s+", " ").toUpperCase();
+
+        List<String> palavras = ChamaLista.removePalavrasInuteis(Arrays.asList(conteudoSemEspacoMaiuscula.split(" ,")));
+
+        return palavras.toString().replaceAll("", "").toUpperCase();
+
+        //conteudoSemEspacoMaiuscula =
+        //if (conteudoPDFSemAcentuacao <= 1) {
+
+        /* int letra = 2;
+        Integer.parseInt(String.valueOf(letra));
+        int letras = letra + letra;
+        System.out.println(letras); */
+
     }
 }
-
-
-
-    //String conteudoPDFSemAcentuacao = Normalizer.normalize(textoPdf, Normalizer.Form.NFD).replaceAll("\\p{InCombiningDiacriticalMarks}+", "");
-
-       // String conteudoSemEspacoMaiuscula = conteudoPDFSemAcentuacao.replaceAll("\\s+", " ").toUpperCase();
-
-        //List<String> palavras = ChamaLista.removePalavrasInuteis(Arrays.asList(conteudoSemEspacoMaiuscula.split(" ,")));
-
-        //return palavras.toString().replaceAll("", "").toUpperCase();
-   // }
 
     /*private static String removePalavrasInuteis(String texto) {
         String textoLimpo = null;
