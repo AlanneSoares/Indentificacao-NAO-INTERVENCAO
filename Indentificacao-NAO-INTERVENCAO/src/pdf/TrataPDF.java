@@ -49,6 +49,21 @@ public class TrataPDF {
 
 
         //return conteudoSemEspacoMaiuscula;
+
+
+        /*OutputStreamWriter bufferOut = new OutputStreamWriter(new FileOutputStream(fileName));
+        for (int c = in.read(); c != -1; c = in.read()) {
+            qtde++;
+            if (qtde > 200000) {
+                break;
+            }
+
+            buffer.append((char) c);
+            bufferOut.write((char) c);
+        }
+
+        bufferOut.close();*/
+
         return conteudoPDFSemAcentuacao;
 
     }
