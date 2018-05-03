@@ -4,7 +4,7 @@ import java.io.*;
 import java.text.Normalizer;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.Scanner;
+import java.util.List;
 
 import org.apache.pdfbox.cos.COSDocument;
 import org.apache.pdfbox.pdfparser.PDFParser;
@@ -23,7 +23,7 @@ public class TrataPDF {
         String textoPdf = null;
         String fileName = "c:/users/alanne.soares/documents/teste.pdf";
         File file = new File(fileName);
-        int qtde = 0;
+
 
 
         try {
@@ -38,47 +38,20 @@ public class TrataPDF {
         } catch (Exception e) {
             e.printStackTrace();
 
-            //return null;
         }
 
 
         String conteudoPDFSemAcentuacao = Normalizer.normalize(textoPdf, Normalizer.Form.NFD).replaceAll("\\p{InCombiningDiacriticalMarks}+", "").toUpperCase();
-        //String conteudoSemEspacoMaiuscula = conteudoPDFSemAcentuacao.replaceAll("\\s+", " ").toUpperCase();
+        String conteudoSemEspacoMaiuscula = conteudoPDFSemAcentuacao.replaceAll("\\s+", " ").toUpperCase();
 
-        //ChamaLista.removePalavrasInuteis(Collections.singletonList(Arrays.asList(conteudoSemEspacoMaiuscula.split(" ,")).toString().replaceAll("", "").toUpperCase()));
-
-
-        //return conteudoSemEspacoMaiuscula;
+        List<String> palavras = ChamaLista.removePalavrasInuteis(Collections.singletonList(Arrays.asList(conteudoSemEspacoMaiuscula.split(" ,")).toString().replaceAll("", "").toUpperCase()));
 
 
-        /*OutputStreamWriter bufferOut = new OutputStreamWriter(new FileOutputStream(fileName));
-        for (int c = in.read(); c != -1; c = in.read()) {
-            qtde++;
-            if (qtde > 200000) {
-                break;
-            }
-
-            buffer.append((char) c);
-            bufferOut.write((char) c);
-        }
-
-        bufferOut.close();*/
-
-        return conteudoPDFSemAcentuacao;
+        return palavras.toString();
 
     }
 }
 
-
-
-
-        //conteudoSemEspacoMaiuscula =
-        //if (conteudoPDFSemAcentuacao <= 1) {
-
-        /* int letra = 2;
-        Integer.parseInt(String.valueOf(letra));
-        int letras = letra + letra;
-        System.out.println(letras); */
 
 
     /*private static String removePalavrasInuteis(String texto) {
