@@ -44,13 +44,21 @@ public class TrataPDF {
 
         List<String> palavras = ChamaLista.removePalavrasInuteis(Arrays.asList(conteudoSemPontuacao.split(" ")));
 
-        return palavras.toString().replace("[", "").replace("]","").replaceAll(",", "");
+        return palavras.toString().replace("[", "").replace("]", "").replaceAll(",", "");
 
-        if (palavras.equals(file) == true) {
-            
-        }
 
     }
+
+    /*public static void newDocument() {
+
+        PDDocument newDocument;
+
+        try {
+            File input = new File("novoArquivo.pdf");
+            newDocument = PDDocument.load(input);
+        }
+
+    }*/
 }
 
   /*  private static String removePalavrasInuteis(String texto) {
@@ -62,4 +70,4 @@ public class TrataPDF {
             }
 
         return textoLimpo;
-    }*/
+    //}*/

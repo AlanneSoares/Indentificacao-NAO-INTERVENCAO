@@ -11,12 +11,19 @@ public class ChamaLista {
 
         for (String palavra : palavras) {
 
-            for (String preposicao : Palavras.PALAVRASINUTEIS) {
+            if (palavra.length() <= 3) {
 
-                if (palavra.equals(preposicao)) {
+                palavraSemPreposicao.remove(palavra);
 
-                    palavraSemPreposicao.remove(preposicao);
+            } else {
 
+                for (String preposicao : Palavras.PALAVRASINUTEIS) {
+
+                    if (palavra.equals(preposicao)) {
+
+                        palavraSemPreposicao.remove(preposicao);
+
+                    }
                 }
             }
         }
