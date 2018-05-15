@@ -8,6 +8,10 @@ import java.util.List;
 import org.apache.pdfbox.cos.COSDocument;
 import org.apache.pdfbox.pdfparser.PDFParser;
 import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.edit.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.font.PDFont;
+import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import org.apache.pdfbox.util.PDFTextStripper;
 
 public class TrataPDF {
@@ -48,17 +52,6 @@ public class TrataPDF {
 
 
     }
-
-    /*public static void newDocument() {
-
-        PDDocument newDocument;
-
-        try {
-            File input = new File("novoArquivo.pdf");
-            newDocument = PDDocument.load(input);
-        }
-
-    }*/
 }
 
   /*  private static String removePalavrasInuteis(String texto) {
@@ -71,3 +64,5 @@ public class TrataPDF {
 
         return textoLimpo;
     //}*/
+
+
