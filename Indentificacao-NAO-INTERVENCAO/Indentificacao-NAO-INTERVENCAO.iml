@@ -22,6 +22,7 @@
     <orderEntry type="library" name="poi-378471" level="project" />
     <orderEntry type="library" name="itextpdf-5.1.01" level="project" />
     <orderEntry type="library" name="ojdbc6" level="project" />
+    <orderEntry type="library" name="org.apache.commons.io" level="project" />
   </component>
   <component name="POM File Configuration" pomFile="" />
 </module>

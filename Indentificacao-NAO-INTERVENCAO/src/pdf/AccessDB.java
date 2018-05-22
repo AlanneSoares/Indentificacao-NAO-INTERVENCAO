@@ -1,10 +1,18 @@
 package pdf;
 
+import org.apache.commons.io.IOUtils;
+import org.apache.pdfbox.cos.COSDocument;
+import org.apache.pdfbox.pdfparser.PDFParser;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.util.PDFTextStripper;
+
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import org.apache.commons.io.IOUtils.*;
 
 public class AccessDB {
 
@@ -35,8 +43,61 @@ public class AccessDB {
         while (rs.next()) {
             Blob pdf = rs.getBlob("PDF");
 
-                lista.add(pdf);
+            lista.add(pdf);
+
+
+                PDFParser parser;
+                PDDocument pdDoc = null;
+                COSDocument cosDoc;
+                PDFTextStripper pdfStripper = null;
+
+                String textoPdf = null;
+                String fileName = "c:/users/alanne.soares/documents/"+ rs.getString("NOME_ARQUIVO") + ".pdf";
+                File file = new File(fileName);
+
+                //IOUtils.copy();
+
+                FileOutputStream fos = new FileOutputStream(file);
+                
+                fos.close();
+        }
+
+        return lista;
+    }
+}
+        /*if (lista.get(0).equals(0)) {
+            PDFParser parser;
+            PDDocument pdDoc = null;
+            COSDocument cosDoc;
+            PDFTextStripper pdfStripper = null;
+
+            String textoPdf = null;
+            String fileName = "c:/users/alanne.soares/documents/teste.pdf";
+            File file = new File(fileName);
+
+            try {
+
+                parser = new PDFParser(new FileInputStream(file));
+                parser.parse();
+                cosDoc = parser.getDocument();
+                pdfStripper = new PDFTextStripper();
+                pdDoc = new PDDocument(cosDoc);
+                textoPdf = pdfStripper.getText(pdDoc);
+
+                textoPdf = pdfStripper.getText(pdDoc);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
+
+            String conteudoPDFSemAcentuacao = Normalizer.normalize(textoPdf, Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "");
+            String conteudoSemEspacoMaiuscula = conteudoPDFSemAcentuacao.replaceAll("\\s+", " ").toUpperCase();
+            String conteudoSemPontuacao = conteudoSemEspacoMaiuscula.replaceAll("\\p{Punct}", "");
+
+            List<String> palavras = ChamaLista.removePalavrasInuteis(Arrays.asList(conteudoSemPontuacao.split(" ")));
+
+           // return palavras.toString().replace("[", "").replace("]", "").replaceAll(",", "");
+        }*/
+
 
 
 
@@ -66,10 +127,12 @@ public class AccessDB {
 
 
 
-        return lista;
+        //return lista;
 
-    }
-}
+        //return palavras.toString().replace("[", "").replace("]", "").replaceAll(",", "");
+
+    //}
+//}
 
 
 
