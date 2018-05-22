@@ -1,9 +1,13 @@
 package pdf;
 
-public class Application {
-    public static void main(String args[]) {
+import java.io.IOException;
+import java.sql.SQLException;
 
-        System.out.println(TrataPDF.obterTexto());
+public class Application {
+
+    public static void main(String args[]) throws SQLException, ClassNotFoundException, IOException {
+
+        System.out.println(AccessDB.obterTexto());
         
     }
 }

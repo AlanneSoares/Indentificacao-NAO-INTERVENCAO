@@ -20,8 +20,8 @@
     <orderEntry type="library" name="me-app" level="project" />
     <orderEntry type="library" name="me-applet" level="project" />
     <orderEntry type="library" name="poi-378471" level="project" />
-    <orderEntry type="library" name="itextpdf-5.1.0" level="project" />
     <orderEntry type="library" name="itextpdf-5.1.01" level="project" />
+    <orderEntry type="library" name="ojdbc6" level="project" />
   </component>
   <component name="POM File Configuration" pomFile="" />
 </module>
