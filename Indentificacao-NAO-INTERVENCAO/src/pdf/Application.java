@@ -7,7 +7,7 @@ public class Application {
 
     public static void main(String args[]) throws SQLException, ClassNotFoundException, IOException {
 
-        System.out.println(AccessDB.obterTexto());
+        AccessDB.obterTexto();
         
     }
 }

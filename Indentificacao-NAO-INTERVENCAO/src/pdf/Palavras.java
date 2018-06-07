@@ -28,7 +28,7 @@ public class Palavras {
 
             "JUNTO",
 
-            "LADO",
+            "LADO", "LTDA",
 
             "MODO", "MESMO", "MESMOS", "MESMA", "MESMAS",
             "MAS",
