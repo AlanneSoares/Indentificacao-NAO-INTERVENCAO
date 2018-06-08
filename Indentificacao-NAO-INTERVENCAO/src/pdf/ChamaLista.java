@@ -11,11 +11,13 @@ public class ChamaLista {
 
         for (String palavra : palavras) {
 
-            if (palavra.length() <= 3) {
+            if (palavra.length() <= 2) {
 
                 palavraSemPreposicao.remove(palavra);
 
-            } else {
+            }
+
+            else {
 
                 for (String preposicao : Palavras.PALAVRASINUTEIS) {
 
@@ -23,10 +25,10 @@ public class ChamaLista {
 
                         palavraSemPreposicao.remove(preposicao);
 
+                        }
                     }
                 }
             }
-        }
 
         return palavraSemPreposicao;
 

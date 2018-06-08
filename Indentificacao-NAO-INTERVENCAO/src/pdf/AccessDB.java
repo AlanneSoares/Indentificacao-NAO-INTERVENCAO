@@ -1,19 +1,16 @@
 package pdf;
 
-import org.apache.pdfbox.cos.COSDocument;
-import org.apache.pdfbox.pdfparser.PDFParser;
-import org.apache.pdfbox.pdmodel.PDDocument;
-import org.apache.pdfbox.util.PDFTextStripper;
-
-import java.io.*;
+import org.apache.pdfbox.cos.*;
+import org.apache.pdfbox.pdfparser.*;
+import org.apache.pdfbox.pdmodel.*;
+import org.apache.pdfbox.util.*;
 import java.sql.*;
-import java.text.Normalizer;
 import java.util.*;
 
 
 public class AccessDB {
 
-    public static void obterTexto() throws ClassNotFoundException, SQLException, IOException {
+    public static void obterTexto() throws ClassNotFoundException, SQLException {
 
         String queryIds;
         String queryPdf;
@@ -22,7 +19,6 @@ public class AccessDB {
         String url;
         String username;
         String password;
-        List<Map<String, List<String>>> mapPalavras = new ArrayList<>();
 
 
         // ACESSO AO BANCO
@@ -75,30 +71,15 @@ public class AccessDB {
                 pdDoc = new PDDocument(cosDoc);
                 textoPdf = pdfStripper.getText(pdDoc);
 
-                String semAcentuacao = Normalizer.normalize(textoPdf, Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "");
-                String semEspacoDuplo = semAcentuacao.replaceAll("\\s+", " ");
-                String semPonto = semEspacoDuplo.replace(".", "");
-                String semVirgula = semPonto.replace(",", "");
-                String semDoisPonto = semVirgula.replace(":", "");
-                String semPontoVirgula = semDoisPonto.replace(";", "");
-                String semSimbolOrdinalª = semPontoVirgula.replace("ª", "");
-                String semSimbolOrdinalº = semSimbolOrdinalª.replace("º", "");
-                String semBarra = semSimbolOrdinalº.replace("/", "");
-                String semSimboloComercial = semBarra.replace("|", "");
-                String semParentes1 = semSimboloComercial.replace("(", "");
-                String semParentes2 = semParentes1.replace(")", "");
-                String semHifen = semParentes2.replace("-", " ");
-                String conteudo = semHifen.toUpperCase();
-
                 psExclui.setInt(1, new Integer(nome_arquivo).intValue());
                 psExclui.execute();
 
-                List<String> map = ChamaLista.removePalavrasInuteis(Arrays.asList(conteudo.split(" ")));
+                List<String> map = ChamaLista.removePalavrasInuteis(Arrays.asList(CaracterEspecial.deleteCaracter(textoPdf).split(" ")));
 
-                for (int i = 0; i < map.size(); i++) {
+                for (int i = 1; i < map.size(); i++) {
 
                     String palavra = map.get(i);
-                    System.out.println("nome_arquivo=" + nome_arquivo + " i=" + i + " palavra=" + palavra);
+                    System.out.println("Nome: " + nome_arquivo + " Sequência: " + i + " Palavra: " + palavra);
 
                     psInsere.setInt(1, new Integer(nome_arquivo).intValue());
                     psInsere.setInt(2, i + 1);
